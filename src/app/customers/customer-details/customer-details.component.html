@@ -1,0 +1,29 @@
+<h1>
+    Kunden-Details &nbsp;&nbsp;&nbsp;
+    <Button class="btn {{customerButtonTextEditClass}}"
+        (click)="toggleCustomerIsEditable()">{{customerButtonTextEdit}}</Button>
+</h1>
+
+
+
+<app-share-customer-details *ngIf="container && container.customer && !customerIsEditable"
+    [customer]="container.customer">
+</app-share-customer-details>
+
+<app-share-customer-details-form *ngIf="container && container.customer && customerIsEditable"
+    [setCustomer]="container.customer">
+</app-share-customer-details-form>
+
+<br />
+<br />
+<div>
+
+    <app-share-customer-orders *ngIf="container && container.customerOrders"
+        [customerOrders]="container.customerOrders">
+    </app-share-customer-orders>
+
+
+</div>
+
+<br />
+<br />

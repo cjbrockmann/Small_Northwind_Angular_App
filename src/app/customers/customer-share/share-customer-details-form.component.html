@@ -1,0 +1,102 @@
+<div *ngIf="getCustomer; else elseBlock">
+
+    <form class="" [formGroup]="myForm">
+
+        <table class="table table-hover" style="width: auto; min-width: 50%; ">
+            <tbody>
+                <tr>
+                    <th width="60em" scope="row">Kunden ID</th>
+                    <td>
+                        <input formControlName="id">
+                        <span *ngIf="fGet('id').invalid && (fGet('id').dirty || fGet('id').touched)" style="color:red;">
+                            <ng-container *ngIf="fGet('id').errors.required">
+                                <br />Eine Kunden-ID muss angegeben werden.
+                            </ng-container>
+                        </span>
+                    </td>
+                    <td>{{getCustomer.id}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Firmenname</th>
+                    <td>
+                        <input formControlName="companyName">
+                        <span
+                            *ngIf="fGet('companyName').invalid && (fGet('companyName').dirty || fGet('companyName').touched)"
+                            style="color:red;">
+                            <ng-container *ngIf="fGet('companyName').errors.required">
+                                <br />Ein Firmenname muss angegeben werden.
+                            </ng-container>
+                        </span>
+                    </td>
+                    <td>{{getCustomer.companyName}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Kundenname</th>
+                    <td>
+
+                        <input formControlName="contactName">
+                        <span
+                            *ngIf="fGet('contactName').invalid && (fGet('contactName').dirty || fGet('contactName').touched)"
+                            style="color:red;">
+                            <ng-container *ngIf="fGet('contactName').errors.required">
+                                <br />Ein Kundenname muss angegeben werden.
+                            </ng-container>
+                            <ng-container *ngIf="fGet('contactName').errors.minlength">
+                                <br />Ein Kundenname muss mindestens 5 Zeichen enthalten.
+                            </ng-container>
+                        </span>
+                    </td>
+                    <td>{{getCustomer.contactName}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Titel</th>
+                    <td><input formControlName="contactTitle"></td>
+                    <td>{{getCustomer.contactTitle}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Adresse</th>
+                    <td style="padding-left: 5px;">
+                        <table class="table table-sm  table-bordered" border=0 cellpadding=2 cellspacing=0
+                            style="border: none; background-color: #eeeeee; opacity: 0.8;">
+                            <tr>
+                                <td>Strasse</td>
+                                <td><input formControlName="address"> </td>
+                                <td>{{getCustomer.address}}</td>
+                            </tr>
+                            <tr>
+                                <td>PLZ</td>
+                                <td><input formControlName="postalCode"> </td>
+                                <td>{{getCustomer.postalCode}}</td>
+                            </tr>
+                            <tr>
+                                <td>Ort</td>
+                                <td><input formControlName="city"> </td>
+                                <td>{{getCustomer.city}}</td>
+                            </tr>
+                            <tr>
+                                <td>Land</td>
+                                <td><input formControlName="country"> </td>
+                                <td>{{getCustomer.country}}</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+
+        </table>
+
+        <button type="button" class="btn btn-primary" style="margin-left: 10px;" routerLink="/customers">Zurück</button>
+        <button class="btn btn-secondary" style="margin-left: 10px;" (click)="simulieren()">Abschicken
+            simulieren</button>
+        <button class="btn btn-success" style="margin-left: 10px;" (click)="submit()">Abschicken</button>
+        &nbsp;&nbsp;
+        <ng-component>
+            <font color={{this.color}}>{{message}}</font>
+        </ng-component>
+    </form>
+
+</div>
+
+<ng-template #elseBlock>
+    <font color="red">Loading... </font><br />
+</ng-template>

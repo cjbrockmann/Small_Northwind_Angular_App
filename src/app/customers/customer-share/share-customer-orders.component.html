@@ -1,0 +1,47 @@
+<h2>Bestellungen</h2>
+
+<table class="table table-bordered table-hover" style="width: auto; min-width: 50%;">
+    <thead>
+        <tr>
+            <th>Bestell-ID</th>
+            <th>Date</th>
+            <th>Freight</th>
+            <th>&nbsp;</th>
+        </tr>
+    </thead>
+    <tbody>
+        <ng-container *ngFor="let ord of customerOrders">
+            <tr>
+                <td>{{ord.order.id}}</td>
+                <td>{{ord.order.orderDate}}</td>
+                <td>{{ord.order.freight}}</td>
+                <td (click)="toggleVisibility(ord)">
+                    <a class="button btn-sm" *ngIf="!ord.showMyDetails">show details</a>
+                    <a class="button btn-sm" *ngIf="ord.showMyDetails">hide details</a>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" *ngIf="ord.showMyDetails">
+                    <table>
+                        <thead>
+                            <th>Order ID</th>
+                            <th>Product ID</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                        </thead>
+                        <tbody>
+                            <ng-container *ngFor="let d of ord.orderDetails">
+                                <tr>
+                                    <td>{{d.orderId}}</td>
+                                    <td>{{d.productId}}</td>
+                                    <td>{{d.quantity}}</td>
+                                    <td>{{d.unitPrice}}</td>
+                                </tr>
+                            </ng-container>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </ng-container>
+    </tbody>
+</table>

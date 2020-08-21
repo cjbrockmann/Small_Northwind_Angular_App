@@ -1,0 +1,27 @@
+<h1>Customers</h1>
+
+<p *ngIf="!customers"><em>Loading...</em></p>
+
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="customers">
+    <thead>
+        <tr>
+            <th nowrap="nowrap">Customer ID</th>
+            <th>Name</th>
+            <th>Country</th>
+            <th><br></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let cust of customers">
+            <td>{{ cust.id }}</td>
+            <td>{{ cust.contactName }}</td>
+            <td>{{ cust.country }}</td>
+            <td>
+                <a routerLink="customer/{{cust.id}}" [queryParams]="{viewstate: 'details'}">Details</a>
+                &nbsp;&nbsp;
+                <a routerLink="customer/{{cust.id}}" [queryParams]="{viewstate: 'edit'}">Edit</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<br /><br />
